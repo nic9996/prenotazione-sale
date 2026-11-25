@@ -274,7 +274,7 @@ class Prenotazione:
             return False
         inizio_a, fine_a = self.intervallo_minuti()
         inizio_b, fine_b = altra.intervallo_minuti()
-        return inizio_a <= fine_b and inizio_b <= fine_a
+        return inizio_a < fine_b and inizio_b < fine_a
 
     def to_dict(self):
         """Restituisce un dizionario con le chiavi:
