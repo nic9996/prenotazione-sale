@@ -18,3 +18,8 @@ class TestPrenotazione(unittest.TestCase):
         for inizio, fine in orari_non_ammessi:
             with self.assertRaises(ValueError):
                 Prenotazione("A1", date(2026, 11, 25), inizio, fine, "Apollo", 25)
+
+    def test_data_non_ammessa(self):
+        # il costruttore solleva TypeError se il giorno	non	è un date
+        with self.assertRaises(TypeError):
+            Prenotazione("A1", "2026, 11, 25", "08:00", "10:00", "Apollo", 25)
