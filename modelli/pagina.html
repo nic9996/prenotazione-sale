@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Prenotazione sale – $titolo_settimana</title>
+  <link rel="stylesheet" href="/static/stile.css">
+</head>
+<body>
+  <header class="testata">
+    <h1>Prenotazione sale</h1>
+    <nav class="schede" aria-label="Sale">
+      $schede_sale
+    </nav>
+  </header>
+
+  <main class="impaginato">
+    <section class="agenda" aria-labelledby="titolo-agenda">
+      <div class="agenda-testa">
+        <div>
+          <h2 id="titolo-agenda">$sala_corrente</h2>
+          <p class="periodo">$titolo_settimana</p>
+        </div>
+        <nav class="navigazione" aria-label="Settimane">
+          $navigazione
+        </nav>
+      </div>
+
+      $messaggio
+
+      <div class="calendario-scorrevole">
+        $calendario
+      </div>
+      <p class="nota">Seleziona una fascia libera del calendario per precompilare il modulo.</p>
+
+      <h2>Prenotazioni della settimana</h2>
+      $elenco_prenotazioni
+    </section>
+
+    <aside class="pannello">
+      <section id="nuova" aria-labelledby="titolo-nuova">
+        <h2 id="titolo-nuova">Nuova prenotazione</h2>
+        <form class="modulo" method="post" action="/prenota">
+          <input type="hidden" name="settimana" value="$settimana_corrente">
+
+          <label for="sala">Sala</label>
+          <select id="sala" name="sala">
+            $opzioni_sale
+          </select>
+
+          <label for="giorno">Giorno</label>
+          <input id="giorno" name="giorno" type="date" required
+                 min="$giorno_min" max="$giorno_max" value="$valore_giorno">
+
+          <div class="coppia">
+            <div>
+              <label for="inizio">Dalle</label>
+              <select id="inizio" name="inizio">
+                $opzioni_inizio
+              </select>
+            </div>
+            <div>
+              <label for="fine">Alle</label>
+              <select id="fine" name="fine">
+                $opzioni_fine
+              </select>
+            </div>
+          </div>
+
+          <label for="referente">Referente</label>
+          <input id="referente" name="referente" type="text" required
+                 autocomplete="name" value="$valore_referente">
+
+          <label for="partecipanti">Partecipanti</label>
+          <input id="partecipanti" name="partecipanti" type="number" min="1"
+                 required value="$valore_partecipanti">
+
+          <label for="motivo">Motivo <span class="facoltativo">(facoltativo)</span></label>
+          <input id="motivo" name="motivo" type="text" value="$valore_motivo">
+
+          <button type="submit">Prenota</button>
+        </form>
+      </section>
+
+      <section id="ricerca" aria-labelledby="titolo-ricerca">
+        <h2 id="titolo-ricerca">Cerca sale libere</h2>
+
+        <form class="modulo" method="get" action="/libere">
+          <label for="giorno-ricerca">Giorno</label>
+          <input id="giorno-ricerca" name="giorno" type="date" required
+                 value="$valore_giorno_ricerca">
+
+          <div class="coppia">
+            <div>
+              <label for="inizio-ricerca">Dalle</label>
+              <select id="inizio-ricerca" name="inizio">
+                $opzioni_inizio_ricerca
+              </select>
+            </div>
+            <div>
+              <label for="fine-ricerca">Alle</label>
+              <select id="fine-ricerca" name="fine">
+                $opzioni_fine_ricerca
+              </select>
+            </div>
+          </div>
+
+          <label for="persone-ricerca">Persone</label>
+          <input id="persone-ricerca" name="persone" type="number" min="1" required
+                 value="$valore_persone_ricerca">
+
+          <span class="etichetta">Dotazioni richieste</span>
+          $caselle_dotazioni
+
+          <button type="submit">Cerca sale libere</button>
+        </form>
+
+        <div class="esito-ricerca">
+          $risultati_ricerca
+        </div>
+      </section>
+    </aside>
+  </main>
+</body>
+</html>

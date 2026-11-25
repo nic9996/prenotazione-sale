@@ -1,0 +1,12 @@
+# Regole di stile valutate all'esame. Non modificare questo file.
+line-length = 88
+# I file Markdown non sono codice da valutare.
+extend-exclude = ["*.md"]
+
+[lint]
+# E, W: pycodestyle (PEP 8)   F: pyflakes (errori logici)
+# I: ordinamento degli import  N: convenzioni di naming (PEP 8)
+select = ["E", "F", "W", "I", "N"]
+# N818 richiede il suffisso inglese "Error" nei nomi delle eccezioni:
+# non si applica a un progetto con identificatori in italiano.
+ignore = ["N818"]

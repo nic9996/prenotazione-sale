@@ -1,0 +1,408 @@
+/* Foglio di stile dell'interfaccia di prenotazione. */
+
+/* 1. Variabili ------------------------------------------------------------ */
+
+:root {
+  --sfondo: #eef1f0;
+  --superficie: #ffffff;
+  --inchiostro: #1e2a32;
+  --tenue: #5b6b73;
+  --linea: #d3dbdf;
+  --linea-ora: #aebbc1;
+  --blocco: #2f5d62;
+  --blocco-testo: #ffffff;
+  --accento: #2f5d62;
+  --fuoco: #e0a100;
+  --passato: #f3f5f5;
+
+  /* Giorno corrente e messaggi di esito */
+  --oggi: #fff6dc;
+  --ok: #2e6b3f;
+  --ok-sfondo: #e7f2ea;
+  --errore: #a4262c;
+  --errore-sfondo: #fbeaea;
+
+  --testo: "Segoe UI", Ubuntu, Cantarell, "Noto Sans", "Helvetica Neue",
+    Arial, sans-serif;
+  --raggio: 6px;
+  --altezza-fascia: 1.6rem;
+}
+
+/* 2. Base ----------------------------------------------------------------- */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--sfondo);
+  color: var(--inchiostro);
+  font-family: var(--testo);
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+h1,
+h2,
+h3 {
+  line-height: 1.2;
+  margin: 0 0 0.5rem;
+}
+
+h1 {
+  font-size: 1.5rem;
+}
+
+h2 {
+  font-size: 1.2rem;
+}
+
+h3 {
+  font-size: 1rem;
+}
+
+a {
+  color: var(--accento);
+}
+
+:focus-visible {
+  outline: 3px solid var(--fuoco);
+  outline-offset: 2px;
+}
+
+/* 3. Testata e impaginazione ---------------------------------------------- */
+
+.testata {
+  background: var(--superficie);
+  border-bottom: 1px solid var(--linea);
+  padding: 1rem 1.5rem 0;
+}
+
+.schede {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem;
+  margin-top: 0.75rem;
+}
+
+.scheda {
+  padding: 0.5rem 0.9rem;
+  border: 1px solid var(--linea);
+  border-bottom: none;
+  border-radius: var(--raggio) var(--raggio) 0 0;
+  color: var(--tenue);
+  text-decoration: none;
+}
+
+.scheda .codice {
+  font-weight: 700;
+}
+
+.scheda.attiva {
+  background: var(--sfondo);
+  color: var(--inchiostro);
+  border-color: var(--linea-ora);
+}
+
+.impaginato {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 20rem;
+  gap: 1.5rem;
+  padding: 1.5rem;
+  max-width: 82rem;
+  margin: 0 auto;
+}
+
+.agenda-testa {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+}
+
+.periodo {
+  margin: 0;
+  color: var(--tenue);
+}
+
+.navigazione {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.nota,
+.vuoto,
+.facoltativo {
+  color: var(--tenue);
+  font-size: 0.9rem;
+}
+
+/* 4. Calendario settimanale ---------------------------------------------- */
+
+.calendario-scorrevole {
+  overflow-x: auto;
+  background: var(--superficie);
+  border: 1px solid var(--linea);
+  border-radius: var(--raggio);
+}
+
+.calendario {
+  display: grid;
+  grid-template-columns: 3.5rem repeat(6, minmax(6.5rem, 1fr));
+  grid-template-rows: auto repeat(var(--fasce), var(--altezza-fascia));
+  min-width: 44rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.angolo,
+.intestazione {
+  grid-row: 1;
+  position: sticky;
+  top: 0;
+  background: var(--superficie);
+  border-bottom: 1px solid var(--linea-ora);
+  z-index: 2;
+}
+
+.intestazione {
+  display: flex;
+  flex-direction: column;
+  padding: 0.4rem 0.5rem;
+  border-left: 1px solid var(--linea);
+}
+
+.nome-giorno {
+  font-weight: 700;
+}
+
+.occupazione {
+  font-size: 0.8rem;
+  color: var(--tenue);
+}
+
+.ora {
+  grid-column: 1;
+  padding: 0 0.4rem;
+  font-size: 0.8rem;
+  color: var(--tenue);
+  text-align: right;
+  line-height: 1.2;
+  padding-top: 0.1rem;
+}
+
+.cella {
+  display: block;
+  border-left: 1px solid var(--linea);
+  border-top: 1px dotted var(--linea);
+}
+
+.cella.ora-piena {
+  border-top: 1px solid var(--linea-ora);
+}
+
+a.cella:hover {
+  background: #e3eeec;
+}
+
+.cella.passato {
+  background: var(--passato);
+}
+
+.prenotazione {
+  z-index: 1;
+  margin: 1px 3px;
+  padding: 0.15rem 0.4rem;
+  overflow: hidden;
+  background: var(--blocco);
+  color: var(--blocco-testo);
+  border-radius: 4px;
+  border-left: 4px solid #173236;
+  font-size: 0.8rem;
+  line-height: 1.25;
+}
+
+.prenotazione span {
+  display: block;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.prenotazione .orario {
+  font-weight: 700;
+}
+
+.prenotazione .motivo {
+  opacity: 0.85;
+}
+
+/* 5. Tabelle e risultati -------------------------------------------------- */
+
+.tabella-scorrevole {
+  overflow-x: auto;
+}
+
+.elenco {
+  width: 100%;
+  border-collapse: collapse;
+  background: var(--superficie);
+  font-size: 0.95rem;
+}
+
+.elenco th,
+.elenco td {
+  padding: 0.45rem 0.6rem;
+  border-bottom: 1px solid var(--linea);
+  text-align: left;
+  vertical-align: middle;
+}
+
+.elenco th {
+  font-weight: 600;
+  color: var(--tenue);
+}
+
+.numero {
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.esito-ricerca {
+  margin-top: 1rem;
+}
+
+.risultati {
+  margin: 0;
+  padding-left: 1.1rem;
+}
+
+.risultati li {
+  margin-bottom: 0.4rem;
+}
+
+.risultati a {
+  display: inline-block;
+  margin-left: 0.25rem;
+}
+
+/* 6. Moduli ----------------------------------------------------------------- */
+
+.pannello section {
+  background: var(--superficie);
+  border: 1px solid var(--linea);
+  border-radius: var(--raggio);
+  padding: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.modulo {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.modulo label,
+.modulo .etichetta {
+  font-weight: 600;
+  font-size: 0.9rem;
+  margin-top: 0.5rem;
+}
+
+.modulo input,
+.modulo select,
+.modulo button,
+.elenco button {
+  font: inherit;
+}
+
+.modulo input[type="text"],
+.modulo input[type="date"],
+.modulo input[type="number"],
+.modulo select {
+  width: 100%;
+  padding: 0.4rem 0.5rem;
+  border: 1px solid var(--linea-ora);
+  border-radius: 4px;
+  background: var(--superficie);
+  color: var(--inchiostro);
+}
+
+.coppia {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem;
+}
+
+.modulo .casella {
+  font-weight: 400;
+  margin-top: 0;
+}
+
+.modulo button {
+  margin-top: 1rem;
+  padding: 0.55rem 1rem;
+  border: none;
+  border-radius: 4px;
+  background: var(--blocco);
+  color: var(--blocco-testo);
+  font-weight: 600;
+  cursor: pointer;
+}
+
+button.secondario {
+  padding: 0.25rem 0.6rem;
+  border: 1px solid var(--linea-ora);
+  border-radius: 4px;
+  background: transparent;
+  color: var(--inchiostro);
+  cursor: pointer;
+}
+
+.avviso-motore {
+  max-width: 40rem;
+  margin: 3rem auto;
+  padding: 1.5rem;
+  background: var(--superficie);
+  border: 1px solid var(--linea);
+  border-radius: var(--raggio);
+}
+
+/* Schermi stretti: il pannello dei moduli va sotto il calendario. */
+@media (max-width: 60rem) {
+  .impaginato {
+    grid-template-columns: minmax(0, 1fr);
+    padding: 1rem;
+  }
+}
+
+/* 7. Giorno corrente e messaggi di esito ------------------------------------ */
+
+.intestazione.oggi,
+.cella.oggi {
+  background: var(--oggi);
+}
+
+.messaggio {
+  margin: 0 0 1rem;
+  padding: 0.6rem 0.9rem;
+  border-left: 5px solid;
+  border-radius: 4px;
+}
+
+.messaggio.ok {
+  color: var(--ok);
+  background: var(--ok-sfondo);
+  border-color: var(--ok);
+}
+
+.messaggio.errore {
+  color: var(--errore);
+  background: var(--errore-sfondo);
+  border-color: var(--errore);
+}

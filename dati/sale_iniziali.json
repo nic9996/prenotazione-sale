@@ -1,0 +1,26 @@
+[
+  {
+    "codice": "A1",
+    "nome": "Aula Magna",
+    "capienza": 60,
+    "dotazioni": ["proiettore", "impianto audio", "lavagna"]
+  },
+  {
+    "codice": "A2",
+    "nome": "Aula 2",
+    "capienza": 25,
+    "dotazioni": ["proiettore", "lavagna"]
+  },
+  {
+    "codice": "L1",
+    "nome": "Laboratorio informatico",
+    "capienza": 20,
+    "dotazioni": ["computer", "proiettore"]
+  },
+  {
+    "codice": "R1",
+    "nome": "Sala riunioni",
+    "capienza": 10,
+    "dotazioni": ["schermo", "videoconferenza"]
+  }
+]
