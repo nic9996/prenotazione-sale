@@ -6,7 +6,7 @@ from prenotazioni import Prenotazione
 
 class TestPrenotazione(unittest.TestCase):
     def test_orari_non_ammessi(self):
-         # il costruttore solleva ValueError per orari non ammessi: inizio non multiplo
+        # il costruttore solleva ValueError per orari non ammessi: inizio non multiplo
         # di 30 minuti, inizio prima dell'apertura, fine dopo la chiusura, fine
         # precedente all'inizio;
         orari_non_ammessi = [

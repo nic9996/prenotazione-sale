@@ -1,7 +1,7 @@
 import unittest
 from datetime import date
 
-from prenotazioni import Agenda, Sala, Prenotazione
+from prenotazioni import Agenda, Prenotazione, Sala
 
 
 class TestSegnalazioni(unittest.TestCase):
