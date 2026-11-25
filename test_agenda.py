@@ -1,7 +1,7 @@
 import unittest
 from datetime import date, timedelta
 
-from prenotazioni import Agenda, Sala, SalaNonTrovata, Prenotazione, DataNonAmmessa, ORIZZONTE_GIORNI
+from prenotazioni import Agenda, Sala, SalaNonTrovata, Prenotazione, DataNonAmmessa, ORIZZONTE_GIORNI, PrenotazioneNonTrovata
 
 
 class TestAgenda(unittest.TestCase):
@@ -62,4 +62,12 @@ class TestAgenda(unittest.TestCase):
         # accettazione data di oggi
         prenotazione = Prenotazione("A1", oggi, "09:00", "12:00", "Mariano", 20)
         agenda.prenota(prenotazione, oggi=oggi)
-        
+
+    def test_prenotazione_inesistente(self):
+        oggi = date(2026, 11, 25)
+        giorno = date(2026, 11, 26)
+        agenda = Agenda()
+        with self.assertRaises(PrenotazioneNonTrovata):        
+            agenda.prenotazione("XXX")
+        with self.assertRaises(PrenotazioneNonTrovata):
+            agenda.cancella("XXX")
