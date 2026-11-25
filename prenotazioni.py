@@ -415,7 +415,7 @@ class Agenda:
             raise ValueError("La prenotazione è già registrata")
         sala = self.sala(prenotazione.sala_codice)
         self._verifica_data(prenotazione.giorno, oggi)
-        if prenotazione.partecipanti >= sala.capienza:
+        if prenotazione.partecipanti > sala.capienza:
             raise CapienzaInsufficiente(
                 f"La sala {sala.codice} ospita al massimo {sala.capienza} persone"
             )
